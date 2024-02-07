@@ -23,6 +23,7 @@ public class RabbitMqConfig {
     @Value("${rabbitmq.queue.json.routing.key}")
     private String jsonRoutingKey;
 
+
     /**
      * Generate the queue in RabbitMQ when starting.
      * @return Queue

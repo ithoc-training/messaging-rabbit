@@ -24,23 +24,4 @@ public class MessageProducerService {
         rabbitTemplate.convertAndSend(queue.getName(), message);
     }
 
-
-    @SuppressWarnings("unused")
-    private String itemsAsJson() {
-        return "[\n" +
-                "    {\n" +
-                "        \"name\": \"Item 1\",\n" +
-                "        \"description\": \"Description 1\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"name\": \"Item 2\",\n" +
-                "        \"description\": \"Description 2\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"name\": \"Item 3\",\n" +
-                "        \"description\": \"Description 3\"\n" +
-                "    }\n" +
-                "]";
-    }
-
 }
