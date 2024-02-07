@@ -1,0 +1,42 @@
+version: '3.4'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - network
+    restart: always
+  message-producer:
+    build: ./message-producer
+    image: message-producer
+    container_name: message-producer
+    ports:
+      - "18088:18088"
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+    networks:
+      - network
+    restart: always
+  message-consumer:
+    build: ./message-consumer
+    image: message-consumer
+    container_name: message-consumer
+    ports:
+      - "18089:18089"
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+    networks:
+      - network
+    restart: always
+networks:
+  network:
